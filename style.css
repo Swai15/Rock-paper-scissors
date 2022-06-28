@@ -1,8 +1,8 @@
 * {
   margin: 0;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
 
 }
-
 
 .flex-container {
   background: rgb(131, 131, 131);
@@ -20,6 +20,7 @@
   color: white;
   margin-top: 2em;
   border: 3px black solid;
+  margin-bottom: 1.1em;
   border-radius: 30px;
   font-size: 2em;
 
@@ -29,4 +30,14 @@
   font-size: 2.05em;
   background: rgb(110, 88, 92);
   border-color: rgb(36, 33, 33);
+}
+
+.flex-container p {
+  font-size: 1.1em;
+  padding-top: 10px;
+  color: rgb(44, 38, 38);
+}
+
+.flex-container p span {
+  font-weight: bold;
 }
