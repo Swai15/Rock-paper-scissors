@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+
+}
+
+
+.flex-container {
+  background: rgb(131, 131, 131);
+  height: 100vh;
+  text-align: center;
+
+}
+
+.flex-container h1 {
+  padding-top: 20px;
+}
+
+.flex-container button {
+  background: rgb(83, 67, 70);
+  color: white;
+  margin-top: 2em;
+  border: 3px black solid;
+  border-radius: 30px;
+  font-size: 2em;
+
+}
+
+.flex-container button:hover {
+  font-size: 2.05em;
+  background: rgb(110, 88, 92);
+  border-color: rgb(36, 33, 33);
+}

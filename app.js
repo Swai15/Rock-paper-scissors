@@ -1,61 +1,76 @@
-let values = ["Rock", "paper", "Scissors"];
+const choices = ["rock", "paper", "scissors"];
+const winners = [];
 
-// Computer selects answer
-function computerPlay(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+function game() {
+  for (let i = 0; i < 5; i++) {
+    playRound(i);
+  }
+  document.querySelector(".button").textContent = "Play new game";
+  logwins();
 }
 
-let compSelection = computerPlay(0, 2);
-console.log(compSelection);
+function playRound(round) {
+  const playerSelection = playerChoice();
+  const computerSelection = computerChoice();
+  const winner = checkWinner(playerSelection, computerSelection);
+  winners.push(winner);
+  logRound(playerSelection, computerSelection, winner, round);
+  // console.log(winner);
+}
 
-// Human inputs/selects answer
-let playerSelect = prompt("Rock, Paper or Scissors?");
-let playerSelection = playerSelect.toLowerCase();
-
-//Shortened general answers
-const compWins = "You loose, Your opponent wins";
-const humanWins = "You win, Your opponent looses";
-const tie = "It's a tie!";
-
-// Comp vs Human round
-
-function playRound(playerSelection, compSelection) {
-  // Player choice vs Comp ROCK
-  if ((playerSelection === "rock") & (compSelection === 0)) {
-    console.log(tie);
-  } else if ((playerSelection === "paper") & (compSelection === 0)) {
-    console.log(humanWins);
-  } else if ((playerSelection === "scissors") & (compSelection === 0)) {
-    console.log(compWins);
+function playerChoice() {
+  let input = prompt("Type Rock, Paper or Scissors");
+  while (input == null) {
+    input = prompt("Type Rock, Paper or Scissors");
   }
+  input = input.toLowerCase();
+  let check = validateInput(input);
 
-  // Player choice vs Comp PAPAER
-  if ((playerSelection === "rock") & (compSelection === 1)) {
-    console.log(compWins);
-  } else if ((playerSelection === "paper") & (compSelection === 1)) {
-    console.log(tie);
-  } else if ((playerSelection === "scissors") & (compSelection === 1)) {
-    console.log(humanWins);
+  while (check == false) {
+    input = prompt("Type rock, paper or scissors. Spelling needs to be exact");
+
+    while (input == null) {
+      input = prompt("Type Rock, Paper or Scissors");
+    }
+    input = input.toLowerCase();
+    check = validateInput(input);
   }
+  return input;
+}
 
-  // Player choice vs comp SCISSORS
-  if ((playerSelection === "rock") & (compSelection === 2)) {
-    console.log(humanWins);
-  } else if ((playerSelection === "paper") & (compSelection === 2)) {
-    console.log(compWins);
-  } else if ((playerSelection === "scissors") & (compSelection === 2)) {
-    console.log(tie);
+function computerChoice() {
+  return choices[Math.floor(Math.random() * choices.length)];
+}
+
+function validateInput(choice) {
+  return choices.includes(choice);
+}
+
+function checkWinner(choiceP, choiceC) {
+  if (choiceP == choiceC) {
+    return "tie";
+  } else if ((choiceP == "rock" && choiceC == "scissors") || (choiceP == "paper" && choiceC == "rock") || (choiceP == "scissors" && choiceC == "paper")) {
+    return "player";
+  } else {
+    return "computer";
   }
 }
 
-// playRound(playerSelection, compSelection)// Playerround
-// function game() {
-//   for (let i = 0; i < 5; i++) {
-//     if (i < 5) {
+function logwins() {
+  let playerWins = winners.filter((item) => item == "player").length;
+  let computerWins = winners.filter((item) => item == "computer").length;
+  let ties = winners.filter((item) => item == "tie").length;
 
-//       playRound(playerSelection, compSelection);
-//     } else {
-//       console.log("Game");
-//     }
-//   }
-// }
+  console.log("Results:");
+  console.log("Player wins: ", playerWins);
+  console.log("Computer wins: ", computerWins);
+  console.log("Ties: ", ties);
+}
+
+function logRound(playerChoice, computerChoice, winner, round) {
+  console.log("Round: ", round);
+  console.log("Player chose: ", playerChoice);
+  console.log("Computer chose: ", computerChoice);
+  console.log(`${winner} "won the round"`);
+  console.log("--------------------------");
+}
