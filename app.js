@@ -8,38 +8,54 @@ function computerPlay(min, max) {
 let compSelection = computerPlay(0, 2);
 console.log(compSelection);
 
-// Human inputs answer
+// Human inputs/selects answer
 let playerSelect = prompt("Rock, Paper or Scissors?");
 let playerSelection = playerSelect.toLowerCase();
+
+//Shortened general answers
+const compWins = "You loose, Your opponent wins";
+const humanWins = "You win, Your opponent looses";
+const tie = "It's a tie!";
 
 // Comp vs Human round
 
 function playRound(playerSelection, compSelection) {
   // Player choice vs Comp ROCK
   if ((playerSelection === "rock") & (compSelection === 0)) {
-    console.log("That's a tie");
+    console.log(tie);
   } else if ((playerSelection === "paper") & (compSelection === 0)) {
-    console.log("Rock beats paper, you loose");
+    console.log(humanWins);
   } else if ((playerSelection === "scissors") & (compSelection === 0)) {
-    console.log("Rock beats scissors, you loose");
+    console.log(compWins);
   }
 
   // Player choice vs Comp PAPAER
   if ((playerSelection === "rock") & (compSelection === 1)) {
-    console.log("You Loose, Paper beats Rock");
+    console.log(compWins);
   } else if ((playerSelection === "paper") & (compSelection === 1)) {
-    console.log("Thats a tie, paper vs paper");
+    console.log(tie);
   } else if ((playerSelection === "scissors") & (compSelection === 1)) {
-    console.log("You win, scissors beat paper");
+    console.log(humanWins);
   }
 
   // Player choice vs comp SCISSORS
   if ((playerSelection === "rock") & (compSelection === 2)) {
-    console.log("You win, Rock beats Scissors");
+    console.log(humanWins);
   } else if ((playerSelection === "paper") & (compSelection === 2)) {
-    console.log("You loose, scissors beat paper");
+    console.log(compWins);
   } else if ((playerSelection === "scissors") & (compSelection === 2)) {
-    console.log("Tie, Scissors vs Scissors");
+    console.log(tie);
   }
 }
-playRound(playerSelection, compSelection);
+
+// playRound(playerSelection, compSelection)// Playerround
+// function game() {
+//   for (let i = 0; i < 5; i++) {
+//     if (i < 5) {
+
+//       playRound(playerSelection, compSelection);
+//     } else {
+//       console.log("Game");
+//     }
+//   }
+// }
